@@ -1,0 +1,508 @@
+#include <iostream>
+#include <string>
+#include <limits>
+#include <iomanip>
+using namespace std;
+
+class extra_facts {
+public:
+    string morefacts;
+    void givefacts() {
+        cout<<"Here is a quick fact before you go about the origins of lacrosse:"<<endl;//Fact from https://www.xavier.edu/now/2023/five-facts-womens-lacrosse
+        cout << "The Native Americans originally created lacrosse, which was originally called stickball." << endl;
+        cout << "The sport was also used to keep warriors fit, settle disputes, and bring life and joy to communities." << endl;
+    }
+};
+
+
+//this function is used to check the input given by the user it makes sure it is valid// 
+int get_good_input_int(string prompt_text) {
+    bool good_input = false;
+    int input_value;
+    while (!good_input) {
+        try {
+            cout << prompt_text;
+            cin >> input_value;
+            if (cin.fail()) {
+                throw exception();
+            }
+            good_input = true;
+        } catch (exception& e) {
+            cout << "Error, Must be a whole number." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return input_value;
+}
+
+
+
+
+//this function checks the float input given by the user//
+
+float get_good_input_float(string prompt_text) {
+    bool good_input = false;
+    float input_value;
+    while (!good_input) {
+        try {
+            cout << prompt_text;
+            cin >> input_value;
+            if (cin.fail()) {
+                throw exception();
+            }
+            good_input = true;
+        } catch (exception& e) {
+            cout << "Error, Must be a number." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return input_value;
+}
+
+
+
+
+//function declaractions//
+void rules_info_function();
+void equiment_calculator_function();
+void statistics_calc_function();
+void time_spent_function();
+void user_enjoyment_funtion();
+
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+    cout << "Welcome!"<<endl;
+    cout << "This is Everything you need to know about Women's Lacrosse!" << endl<<endl;
+
+
+
+
+    string name;
+    cout << "What is your name? ";
+    cin >> name;
+    cout << "Welcome " << name <<endl<<endl;
+    
+    //all the functions used in this code// 
+    rules_info_function();
+    
+    equiment_calculator_function();
+    
+    statistics_calc_function();
+    
+    time_spent_function();
+    
+    extra_facts facts_instance;
+    facts_instance.morefacts = "";
+    facts_instance.givefacts();
+
+
+    user_enjoyment_funtion();
+    
+    return 0;
+}
+
+
+
+
+//this function is the trivia part of our program//
+void rules_info_function(){
+    cout << "Let's get started with some important rules and information!" <<endl<<endl;
+    string prompt = "How many players do you think are on the field at once? ";
+    int number_of_players_on_field = get_good_input_int(prompt);
+    cout << boolalpha<<(12 == number_of_players_on_field) << endl;
+    cout << "The Correct Answer is 12" << endl;
+    prompt = "Who is allowed in the goal crease, 1: the goalie 2: any player on the field? ";
+    int goal_circle_question = get_good_input_int(prompt);
+    cout << boolalpha<<(goal_circle_question == 1) <<endl;
+    cout << "The correct answer is 1, only the goalie" << endl;
+    prompt = "How many players must stay behind the restraining line while the ball is at one end? ";
+    int restraining_line = get_good_input_int(prompt);
+    cout << boolalpha<<(restraining_line == 4) << endl;
+    cout << "The correct answer is 4" << endl;
+    prompt = "How long is a defender allowed to stand in the 8 meter without being a sticks length away from an attacker? ";
+    int seconds_rule = get_good_input_int(prompt);
+    cout << boolalpha<<(seconds_rule == 3) << endl;
+    cout << "The correct answer is 3 seconds" << endl;
+    prompt = "What is the result of shooting space call in the 8 meter, 1: free possession 2: a free 8 meter shot? ";
+    int shooting_space = get_good_input_int(prompt);
+    cout << boolalpha<<(shooting_space == 2) << endl;
+    cout << "The correct answer is 2, an 8 meter shot" << endl;
+    prompt = "If you would like to see a fun fact type '2', if not type '1': ";
+    int user_wants_to_learn = get_good_input_int(prompt);
+    if (user_wants_to_learn == 2) {
+        cout << "The modern rules of lacrosse date back to 1974" << endl;
+        cout << "when they were drafted for a match between the Native American communities of Seneca and Mohawks." << endl;
+    }
+}
+    
+
+
+
+
+//this function is apart of the calcutator aspect of our program//
+void equiment_calculator_function(){
+ cout << "Now let's look at the total cost after buying equipment" << endl;
+    cout << "to make these calculations suitable for you google or find prices of these items that you would like to buy" << endl;
+    string prompt = "Please enter your budget: ";
+    float users_budget = get_good_input_float(prompt);
+    prompt = "How much do the pair of goggles you want cost? ";
+    float goggles = get_good_input_float(prompt);
+    prompt = "How much does your mouth guard cost? ";
+    float mouth_guard = get_good_input_float(prompt);
+    prompt = "How much does that stick shaft you chose cost? ";
+    float stick_shaft = get_good_input_float(prompt);
+    prompt = "How much does the lacrosse stick head you chose cost? ";
+    float stick_head = get_good_input_float(prompt);
+    prompt = "How much do your cleats cost? ";
+    float cleats = get_good_input_float(prompt);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    float overall_total = cleats + stick_head + stick_shaft + mouth_guard + goggles;
+    cout << "Your total cost after purchasing all your lacrosse gear is: $" << fixed << setprecision(2) << overall_total << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+//this checks and lets the user know whether or not they are under or over their budget and by how much//
+    if (overall_total > users_budget) {
+        cout << "This total is over your budget by $" << fixed << setprecision(2) << (overall_total - users_budget) << endl;
+    } else {
+        cout << "This total is under your budget by $" << fixed << setprecision(2) << (users_budget - overall_total) << endl;
+    }
+    
+}
+
+
+
+
+//this is apart of our training calculator//
+void statistics_calc_function(){
+    cout << "Lets start getting some statistics!" << endl;
+    cout << "Set a timer for one minute and count how many shots you make" << endl;
+    cout << "Repeat three times!" << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    int counter_of_shots = 0;
+    string player_name_for_shooting;
+    cout << "Enter your name: ";
+    cin >> player_name_for_shooting;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    for (int value_input = 0; value_input < 3; value_input++) {
+        string prompt = "Enter how many shots were made in one minute: ";
+        int shots_per_minute = get_good_input_int(prompt);
+        counter_of_shots += shots_per_minute;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    float shooting_average = counter_of_shots / 3.0;
+    cout << "Name: " << player_name_for_shooting << endl;
+    cout << "Shooting Average: " << fixed << setprecision(2) << shooting_average << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (shooting_average >= 0 && shooting_average <= 25) {
+        cout << "This is a below average shooting average" << endl;
+    } else if (!(shooting_average < 25)) {
+        cout << "This is a great shooting average!" << endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    cout << "Now lets calculate your catching percentage" << endl;
+    cout << "Play wall ball for one minute and count how many passes are caught" << endl;
+    cout << "Type '-13' when you are done inputting caught passes" << endl;
+    string prompt = "Type number of caught passes: ";
+    int num_of_caught_passes = get_good_input_int(prompt);
+    int counter_of_passes = 0;
+    int num_of_times_user_trys = 0;
+
+
+
+
+
+
+
+
+//this continues calculating stats until the while loop is ended//
+    while (num_of_caught_passes != -13) {
+        counter_of_passes += num_of_caught_passes;
+        num_of_times_user_trys++;
+        prompt = "Type number of caught passes: ";
+        num_of_caught_passes = get_good_input_int(prompt);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+//this prints and calculates thepassing average all values are given two decimal points//
+    float passing_average = counter_of_passes / static_cast<float>(num_of_times_user_trys);
+    cout << "Passing Average: " << fixed << setprecision(2) << passing_average << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+//this tells the user where they fall in stats with their passing average//
+    if (passing_average >= 20 && passing_average <= 40) {
+        cout << "This is a good passing average!" << endl;
+    } else if (passing_average > 40) {
+        cout << "This is a great passing average!" << endl;
+    } else {
+        cout << "This is a below average passing average" << endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+//this compares the players shooting and passing average//
+    if (shooting_average > passing_average || shooting_average >= passing_average) {
+        cout << "Your shooting average is better or equal to your passing average" << endl;
+    } else if (shooting_average < passing_average) {
+        cout << "Your passing average is greater than your shooting average" << endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    cout << "Now lets Calculate your ground ball average!" << endl;
+    cout << "Set a timer for one minute and count how many ground ball pick ups" << endl;
+    cout << "Repeat three times!" << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    int counter_of_ground_balls = 0;
+    for (int ground_ball_input = 0; ground_ball_input < 3; ground_ball_input++) {
+        prompt = "Enter how many ground ball pick ups in one minute: ";
+        int ground_balls_per_minute = get_good_input_int(prompt);
+        counter_of_ground_balls += ground_balls_per_minute;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    float ground_ball_average = counter_of_ground_balls / 3.0;
+    cout << "Ground Ball Average: " << fixed << setprecision(2) << ground_ball_average << endl;
+    
+}
+//this is the time spent calculator function//
+void time_spent_function(){
+     cout << "Lets calculate the total amount of time participating in a game takes" << endl;
+    int wu = 60;
+    string prompt = "Enter your drive time to fields in minutes: ";
+    int dt = get_good_input_int(prompt);
+    int gt = 50;
+    int ht = 10;
+    int overall_total_time_spent = gt + ht + wu + dt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    cout << overall_total_time_spent << " minutes is your total time spent" << endl;
+    cout << "Lets calculate the amount of time spent per week at practices" << endl;
+    prompt = "How many times per week does your team practice? ";
+    int number_of_practices_per_week = get_good_input_int(prompt);
+    prompt = "How many minutes is each practice? ";
+    int minutes_of_each_practice = get_good_input_int(prompt);
+    prompt = "How many minutes is the drive to your practice fields? ";
+    int amount_of_time_to_drive_to_practice = get_good_input_int(prompt);
+    int total_time_one_practice = amount_of_time_to_drive_to_practice + minutes_of_each_practice;
+    int amount_of_time_per_week_for_practice = total_time_one_practice * number_of_practices_per_week;
+    cout << "Amount of time spent per week for practice in minutes: " << amount_of_time_per_week_for_practice << endl;
+    int game_and_practice_time = overall_total_time_spent + amount_of_time_per_week_for_practice;
+    cout << "The total amount of time spent in minutes per week with practices and a game: " << game_and_practice_time << endl;
+    int game_and_practice_time_hours = game_and_practice_time / 60;
+    int game_and_practice_time_minutes = game_and_practice_time % 60;
+    cout << game_and_practice_time_hours << " hours and " << game_and_practice_time_minutes << " minutes" << endl;
+    
+}
+    
+    
+//this function askes the user if they enjoyed their program//    
+void user_enjoyment_funtion(){
+cout << "Thank you! You have completed Everything you need to know about lacrosse!" << endl;
+    string user_enjoyment;
+    cout << "Did you Enjoy this program? Enter: 'yes' or 'no'";
+    cin >> user_enjoyment;
+    if (user_enjoyment == "yes") {
+        cout << "We are so happy you enjoyed this program!" << endl;
+    } else if (user_enjoyment == "no") {
+        cout << "We are sorry you did not enjoy this program :(" << endl;
+    } else {
+        cout << "That input is not understood" << endl;
+    }
+}
